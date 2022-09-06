@@ -40,7 +40,7 @@ html, body {
 
 <html>
 <head>
-	<title>Chi Lok Referee System</title>
+	<title>Wai Tsuen TKD Referee System (in Game)</title>
 	<meta charset="UTF-8">
 </head>
 <script>

@@ -1,11 +1,11 @@
 <html>
 <head>
-<title> Chi Lok Referee System</title>
+<title> Wai Tsuen TKD Poomsae Referee System</title>
 </head>
 <body>
 <p align=center>
 <img src=logo.png height=200 width=200>
-<h1 align=center>Chi Lok Referee System (Referee)</h1>
+<h1 align=center>Wai Tsuen TKD Poomsae Referee System (Referee)</h1>
 </p>
 <form method=POST action=refereeControl.php onsubmit="window.open ('', 'child', 'fullscreen')" target="child" align=center>
 <p>

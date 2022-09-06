@@ -1,14 +1,17 @@
 <?php
-	
+
+header("Content-type:text/html;charset=utf-8");  
+
 ?>
 <html>
 <head>
-<title> Chi Lok Referee System</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title> Wai Tsuen TKD Poomsae Referee System (Center)</title>
 </head>
 <body>
 <p align=center>
 <img src=logo.png height=200 width=200>
-<h1 align=center>Chi Lok Referee System (Center)</h1>
+<h1 align=center>Wai Tsuen TKD Poomsae Referee System (Center)</h1>
 </p>
 <form method=GET action=game.php  align=center>
 <p>
