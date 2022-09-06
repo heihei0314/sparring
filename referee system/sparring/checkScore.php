@@ -1,8 +1,9 @@
 	<?php 
 	
 		$court = $_GET['court'];
-		$RB = $_GET['RB'];
-		$referee = $_GET['referee'];
+		//$RB = $_GET['RB'];
+		//$referee = $_GET['referee'];
+		$checkScoreSecond = 1000*1000;
 		// Establishing Connection with Database
 		require_once 'db_configs.php';
 		$conn = new mysqli(host, username, password, dbname);
@@ -10,16 +11,31 @@
 			die("Connection failed: " . $conn->connect_error);
 		} 
 		// Establishing Connection with Database
-		$sql = "SELECT score FROM `scoreevent` WHERE time>=DATE_SUB(NOW(),INTERVAL 1 SECOND) AND court='$court' AND referee='$referee' AND RB='$RB'";
+		$sql = "SELECT referee, scoreType, RB FROM `scoreevent` WHERE time>=DATE_SUB(NOW(),INTERVAL $checkScoreSecond MICROSECOND) AND court='$court'";
+		//$sql = "SELECT referee, scoreType, RB FROM `scoreevent` WHERE time>=DATE_SUB(NOW(),INTERVAL 2 DAY) AND court='$court'";
+		//echo $sql;
 		$retval = $conn->query( $sql);
 		if(! $retval )	{
-			die('Could not get data: ' . mysql_error());
+			die('Could not get data: ' . mysqli_error());
 		}
-		$row = $retval->fetch_assoc();	
-		echo $row['score'];	
-
-		$sql = "DELETE FROM `scoreevent` WHERE time>=DATE_SUB(NOW(),INTERVAL 1 SECOND) AND court='$court' AND referee='$referee' AND RB='$RB'";
+		$rowcount=mysqli_num_rows($retval);
+		$i=0;
+		$output='{"scoreEvent":[';
+		while ($row = $retval->fetch_assoc()){	
+		    $output = $output.'{"referee":"'.$row['referee'].'",';
+			$output = $output.'"scoreType":"'.$row['scoreType'].'",';
+			$output = $output.'"RB":"'.$row['RB'].'"}';
+			$i++;
+			if ($i<$rowcount)	{
+				$output = $output.',';
+			}
+		}
+		$output = $output.']}';
+		echo $output;
+		
+		$sql = "DELETE FROM `scoreevent` WHERE time>=DATE_SUB(NOW(),INTERVAL $checkScoreSecond MICROSECOND)";
+		//$sql = "DELETE FROM `scoreevent` WHERE time>=DATE_SUB(NOW(),INTERVAL 2 DAY) AND court='$court' AND referee='$referee' AND RB='$RB'";
 		$retval = $conn->query( $sql);
 		$conn->close();
-	
+	    
 	?>

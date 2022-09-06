@@ -12,122 +12,156 @@ if (isset($_POST['refereePW'])){
 }
 	
 ?>	
-<style type="text/css">
-html, body {
-    margin: 0;
-    padding: 0;
-}
-#red {
-    margin: 0;
-    border: 1px solid black;
-    width: 50%;
-    height: 100%;
-    box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    -webkit-box-sizing:border-box;
-	-webkit-appearance: none;
-}
-#blue {
-    margin: 0;
-    border: 1px solid black;
-    width: 50%;
-    height: 100%;
-    box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    -webkit-box-sizing:border-box;
-	-webkit-appearance: none;
-}
-.button {
-	width: 100%;
-	height: 100%;
-	font-size: 48px;
-	-webkit-appearance: none;
-}
-</style>
+
 <html>
 <head>
-<title> Chi Lok Referee System</title>
-<meta name="apple-mobile-web-app-capable"
-  content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style"
-  content="black-translucent" />
+<style>
+
+#red {
+    background-color:red;
+}
+#blue {
+     background-color:blue;
+
+}
+button {
+	width: 100%;
+	height: 100%;
+	font-size: 24px;
+}
+table {
+    height: 100%;
+    width: 100%;
+}
+tr {
+    height: 33%;
+}
+td {
+    width: 12.5%;
+}
+</style>
+<title>Wai Tsuen TKD Sparring Referee System (Referee)</title>
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" >
+<meta name="apple-mobile-web-app-capable" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" >
 </head>
 <body>
-<div id='total'>
-<div id=red style=background-color:red;float:left;>
-<table width="100%" height="100%" border=0>
+<table>
+    
 <tr>
-<td width="33%">	
+<td id=red>	<button id="RHead" onClick="addScore(this.id)">Head&nbsp</button>
 </td>
-<td width="33%" align='center'><button class="button" id="R_add_3" onClick="addScore(this.id)">Head</button>
+<td id=red>
 </td>
-<td width="33%">
+<td id=red><button id="RSpinHead" onClick="addScore(this.id)">SpinH&nbsp</button>
+</td>
+<td id=red>
+</td>
+<td id=blue>
+</td>
+<td id=blue><button id="BHead" onClick="addScore(this.id)">Head&nbsp</button>
+</td>
+<td id=blue>
+</td>
+<td id=blue><button id="BSpinHead" onClick="addScore(this.id)">SpinH&nbsp</button>
 </td>
 </tr>
+
 <tr>
-<td><button class="button" id="R_add_1" onClick="addScore(this.id)">Punch</button>
+<td id=red>	
 </td>
-<td>
+<td id=red><button id="RPunch" onClick="addScore(this.id)">Punch</button>
 </td>
-<td><button class="button" id="R_add_2" onClick="addScore(this.id)">Spin</button>
+<td id=red>
+</td>
+<td id=red align=right><font color=white id="court" >court</font>
+</td>
+<td id=blue align=left><font color=white id="referee" >referee</font>
+</td>
+<td id=blue>
+</td>
+<td id=blue><button id="BPunch" onClick="addScore(this.id)">Punch</button>
+</td>
+<td id=blue>
 </td>
 </tr>
+
 <tr>
-<td>
+<td id=red>	<button id="RBody" onClick="addScore(this.id)">body&nbsp</button>
 </td>
-<td><button class="button" id="R_add_2" onClick="addScore(this.id)">Body</button>
+<td id=red> 
 </td>
-<td>
+<td id=red><button id="RSpinBody" onClick="addScore(this.id)">SpinB&nbsp</button>
+</td>
+<td id=red>
+</td>
+<td id=blue>
+</td>
+<td id=blue><button id="BBody" onClick="addScore(this.id)">body&nbsp</button>
+</td>
+<td id=blue> 
+</td>
+<td id=blue><button id="BSpinBody" onClick="addScore(this.id)">SpinB&nbsp</button>
 </td>
 </tr>
+
 </table>
-</div>
-<div id=blue style=background-color:blue;float:right;>
-<table width="100%" height="100%" border=0>
-<tr>
-<td width="33%">	
-</td>
-<td width="33%" align='center'><button class="button" id="B_add_3" onClick="addScore(this.id)">Head</button>
-</td>
-<td width="33%">
-</td>
-</tr>
-<tr>
-<td><button class="button" id="B_add_2" onClick="addScore(this.id)">Spin</button>
-</td>
-<td>
-</td>
-<td><button class="button" id="B_add_1" onClick="addScore(this.id)">Punch</button>
-</td>
-</tr>
-<tr>
-<td>
-</td>
-<td><button class="button" id="B_add_2" onClick="addScore(this.id)">Body</button>
-</td>
-<td>
-</td>
-</tr>
-</table>
-</div>
-</div>
+
 <script>
+var court = "<?php echo $court;?>";
+var referee = "<?php echo $referee;?>";
+var elem = document.documentElement;
+var RB = "";
+var score = 0;
+var scoreType = "";
 	function addScore(id){
 		//震動
 		if("vibrate" in navigator){
 			navigator.vibrate(100);
 		}
 		//震動
-		var RB = id.substr(0);
-		var score = id.substr(-1);
+		RB = id.substring(0,1);
+        scoreType = id.substring(1);
 
 		// call php update db
-		var url = "<?php echo $url;?>"+"&RB="+RB+"&score="+score;
+		var url = "<?php echo $url;?>"+"&RB="+RB+"&scoreType="+scoreType;
+		//alert(url);
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("GET", url, true);
 		xmlhttp.send();
 		// call php update db*/
+		//full screen
+		if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) { /* Firefox */
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE/Edge */
+            elem.msRequestFullscreen();
+        }
+        //full screen
 	};
+	
+	//prevent scaling
+    window.onload = () => {
+        document.getElementById("court").innerHTML = court.toString();
+        document.getElementById("referee").innerHTML = referee.toString();
+        document.addEventListener('touchmove', function (event) {
+            if (event.scale !== 1) { event.preventDefault(); }
+            }, { passive: false });
+  
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', (event) => {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 100) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    }
+	//prevent scaling
+	
+	
 </script>
 </body>
 </html>

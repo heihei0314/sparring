@@ -1,8 +1,8 @@
 <?php
-define("host","208.91.198.23", false);
-define("username","chilomah_chilok", false);
-define("password","referee", false);
-define("dbname","chilomah_sparring", false);
-define("refereePW","chilok", false);
-define("sensitive",'1500', false); //referee control time length
+define("host","45.113.121.87", false);
+define("username","waits3ql_tkd", false);
+define("password","Al245935", false);
+define("dbname","waits3ql_sparring", false);
+define("refereePW","tkdreferee", false);
+
 ?>

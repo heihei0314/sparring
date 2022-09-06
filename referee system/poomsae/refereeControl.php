@@ -113,7 +113,7 @@ input[type=range]:focus::-ms-fill-upper {
 </style>
 <html>
 <head>
-<title> Chi Lok Referee System</title>
+<title> Wai Tsuen TKD Referee System</title>
 <meta name="apple-mobile-web-app-capable"
   content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style"

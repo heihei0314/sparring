@@ -1,9 +1,8 @@
 	<?php 
-	
 		$court = $_GET['court'];
 		$referee = $_GET['referee'];
 		$RB = $_GET['RB'];
-		$score = $_GET['score'];
+		$scoreType = $_GET['scoreType'];
 		// Establishing Connection with Database
 		require_once 'db_configs.php';
 		$conn = new mysqli(host, username, password, dbname);
@@ -11,9 +10,9 @@
 			die("Connection failed: " . $conn->connect_error);
 		} 
 		// Establishing Connection with Database
-		$sql = "INSERT INTO scoreEvent (court, referee, RB, score) VALUES ('$court', '$referee', '$RB', '$score')";
+		$sql = "INSERT INTO scoreevent (court, referee, RB, scoreType) VALUES ('$court', '$referee', '$RB', '$scoreType')";
 		if ($conn->query($sql) === TRUE) {
-			//echo "New record created successfully";
+			echo $sql;
 		} else {
 			echo "Error: " . $sql . "<br>" . $conn->error;//*/
 		}
