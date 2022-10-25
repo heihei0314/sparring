@@ -84,6 +84,23 @@ Number of referee :
   </tr> 
   </tr> 
 </table>
-
+<p>
+ <form target="_blank" method=POST  align=center>
+Year: 
+<input type=text name=year></input>
+</p>
+Game:  
+<input type=text name=game></input> 
+</p>
+<p>
+Password:
+<input type=password name=adminpw></input></p>
+<p>
+  <input type="submit" value="report " formaction="report.php">
+</p>
+<p>
+  <input type="submit" value="Game Schedule" formaction="competition.php">
+</p>
+</form>
 </body>
 </html>

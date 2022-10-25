@@ -1,6 +1,6 @@
 <?php 
-		$court = 'S';
 		$year = $_GET['year'];
+		$game = $_GET['game'];
 
 		// Establishing Connection with Database
 		require_once 'db_configs.php';
@@ -10,7 +10,8 @@
 		} 
 		// Establishing Connection with Database
 		
-		$sqlG = "SELECT name, redScore as accScore, redSpin as spinScore, RWarning as Warning, gameWinner, color FROM competitionRecord, seasonGame WHERE color like 'R' and competitionRecord.court=seasonGame.court and year(date) =".$year." and competitionRecord.court like 'S%' UNION SELECT name, blueScore as accScore, blueSpin as spinScore, BWarning as Warning, gameWinner, color FROM competitionRecord, seasonGame WHERE color like 'B' and competitionRecord.court=seasonGame.court and year(date) = ".$year." and competitionRecord.court like 'S%' order by name";
+		$sqlG = "SELECT name, redScore as accScore, redSpin as spinScore, RWarning as Warning, gameWinner, color FROM competitionRecord, seasonGame WHERE color like 'R' and competitionRecord.court=seasonGame.court and seasonGame.year =".$year." and competitionRecord.court like '".$game."%' UNION SELECT name, blueScore as accScore, blueSpin as spinScore, BWarning as Warning, gameWinner, color FROM competitionRecord, seasonGame WHERE color like 'B' and competitionRecord.court=seasonGame.court and seasonGame.year = ".$year." and competitionRecord.court like '".$game."%' order by name";
+		//echo $sqlG;
 		$retvalG = $conn->query( $sqlG);
 		if(! $retvalG )	{
 			die('Could not get data: ' . mysql_error());
@@ -20,7 +21,7 @@
 		   array_push($rowG, $row); 
 		}	
 		
-		$sqlP = "SELECT * from participant where years = ".$year." and game like 'S' order by player";
+		$sqlP = "SELECT * from participant where years = ".$year." and game like '".$game."' order by player";
 		$retvalP = $conn->query( $sqlP);
 		if(! $retvalP )	{
 			die('Could not get data: ' . mysql_error());
@@ -49,6 +50,7 @@
 			array_push($rowP, $sortRow); 
 			
 			$output = $output.'{"name":"'.$rowP['player'].'",';
+			$output = $output.'"weight":"'.$rowP['weight_group'].'",';
 			$output = $output.'"win":"'.$rowP['win'].'",';
 			$output = $output.'"lose":"'.$rowP['lose'].'",';
 			$output = $output.'"accScore":"'.$rowP['accScore'].'",';
