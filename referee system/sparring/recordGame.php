@@ -33,7 +33,7 @@
 		    $output = $output.",".$row['count(`roundWinner`)'];
 		}
 		else {
-		    $output = $output.'0';
+		    $output = $output.',0';
 		}
 		
 		
