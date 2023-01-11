@@ -566,6 +566,7 @@ function countdown() {
 		//get game record
 		
 		competitionRecord = response.split(",");
+		//alert(response);
 		var redSpin = parseInt(competitionRecord[4])*4+parseInt(competitionRecord[5])*5;
 		var blueSpin = parseInt(competitionRecord[8])*4+parseInt(competitionRecord[9])*5;
 		
@@ -575,52 +576,46 @@ function countdown() {
 		if(competitionRecord[1]>competitionRecord[2]){//獲勝回合數
 			var gameWinner = "R";
 			window.open("win.php?who=紅勝");
-			return;
 		}
 		else if(competitionRecord[1]<competitionRecord[2]){
 			var gameWinner = "B";
 			window.open("win.php?who=藍勝");
-			return;
 		}//獲勝回合數
 		else if(competitionRecord[3]>competitionRecord[7]){//三回合總分
 			var gameWinner = "R";
 			window.open("win.php?who=紅勝");
-			return;
 		}
 		else if(competitionRecord[3]<competitionRecord[7]){
 			var gameWinner = "B";
 			window.open("win.php?who=藍勝");
-			return;
 		}//三回合總分
 		else if(redSpin>blueSpin){//旋轉踢法得分
 			var gameWinner = "R";
 			window.open("win.php?who=紅勝");
-			return;
 		}
 		else if(redSpin<blueSpin){
 			var gameWinner = "B";
 			window.open("win.php?who=藍勝");
-			return;
 		}//旋轉踢法得分
 		else if(competitionRecord[6]>competitionRecord[10]){//警告
 			var gameWinner = "B";
 			window.open("win.php?who=藍勝");
-			return;
 		}
 		else if(competitionRecord[6]<competitionRecord[10]){
 			var gameWinner = "R";
 			window.open("win.php?who=紅勝");
-			return;
 		}//警告
 		else{
 			alert("referee Meeting");
 		}
+		//alert(gameWinner);
 		//update competition record
 		var url = "recordCompetition.php?court="+courtNum+"&rWinningRound="+competitionRecord[1]+"&redScore="+competitionRecord[3]+"&redSpin="+redSpin+"&RWarning="+competitionRecord[6]+"&bWinningRound="+competitionRecord[2]+"&blueScore="+competitionRecord[7]+"&blueSpin="+blueSpin+"&BWarning="+competitionRecord[10]+"&gameWinner="+gameWinner;
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.open("GET", url, true);
 		xmlhttp.send();
 		//update competition record*/
+		
 	}
 <!--win setting-->
 <!--recordScore-->
