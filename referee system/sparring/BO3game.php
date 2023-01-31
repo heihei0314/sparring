@@ -151,15 +151,15 @@ html, body {
 				        switch(referee){
 				            case 'r1':
 				                scoreTimer1 = setTimeout(function(){
-						        shiftScoreQueue(id, baseColor);
+						        shiftScoreQueue(id);
 					        }, lightStay);
 				            case 'r2':
 				                scoreTimer2 = setTimeout(function(){
-						        shiftScoreQueue(id, baseColor);
+						        shiftScoreQueue(id);
 					        }, lightStay);
 				            case 'r3':
 				                scoreTimer3 = setTimeout(function(){
-						        shiftScoreQueue(id, baseColor);
+						        shiftScoreQueue(id);
 					        }, lightStay);
 				        }
 				        if (response == "Punch"){	
