@@ -517,7 +517,7 @@ function countdown() {
 	}
 	function pointWin(tempRound)	{ 
 	    
-	    clearTimeout(timer);
+	   
 		var r_score = document.getElementById('r_score').innerHTML;
 		r_score = parseInt(r_score);
 		var b_score = document.getElementById('b_score').innerHTML;
@@ -620,6 +620,7 @@ function countdown() {
 <!--win setting-->
 <!--recordScore-->
 	function recordScore(who){
+		clearTimeout(timer);
 		var audio = new Audio('restTime.mp3');
 		var r_score = document.getElementById('r_score').innerHTML;
 		r_score = parseInt(r_score);
