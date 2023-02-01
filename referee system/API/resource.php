@@ -42,7 +42,7 @@
 	
 	$athletes = array();
 	//get data from database	
-	$sql = "SELECT `court`, `name`, `color` FROM `seasonGame` GROUP by `name`";//get all athletes participation record
+	$sql = "SELECT `court`, `name`, `color` FROM `seasonGame`";//get all athletes participation record
 	$retval = $conn->query( $sql);
 	if(! $retval )	{
 		die('Could not get data: ' . mysql_error());
