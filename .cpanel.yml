@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home2/waits3ql/public_html/sparring
-    - /bin/cp -R sparring $DEPLOYPATH
+    - /bin/cp -R * $DEPLOYPATH
